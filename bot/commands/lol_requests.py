@@ -16,14 +16,20 @@ async def playerStatus(encryptedSummonerId):
   player = 'https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/' + encryptedSummonerId + '?api_key=' + RIOT_API_KEY
   response = requests.get(player)
 
-  if len(response.json()) > 1:
-    lst = 1
+  soloq_entry = None
+
+  for entry in response.json():
+    if entry['queueType'] == 'RANKED_SOLO_5x5':
+      soloq_entry = entry
+      break
+
+  if soloq_entry != None:
+    tier = soloq_entry['tier']
+    wins = int(soloq_entry['wins'])
+    losses = int(soloq_entry['losses'])
+    return [tier, wins, losses]
   else:
-    lst = 0
+    return ['NO TIER', wins, losses]
 
-  tier = response.json()[lst]['tier']
-  wins = int(response.json()[lst]['wins'])
-  losses = int(response.json()[lst]['losses'])
 
-  return [tier, wins, losses]
 

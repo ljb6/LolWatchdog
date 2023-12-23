@@ -1,11 +1,8 @@
 import discord
 from discord.ext import commands
-
-
 from commands.lol_requests import *
 
 DISCORD_TOKEN = 'MTE4NzUxNTY5Njg0NzAxNTk2Ng.GSzjUL.8bkzwJA7cpK458Y1jsKFUI6M6F4d8oPRGXokNw'
-RIOT_API_KEY = 'RGAPI-532e655a-680e-440e-a0b2-0e456da5c152'
 
 intents = discord.Intents.all() 
 
@@ -20,12 +17,15 @@ async def player(ctx, name=None, tag=None):
     if name is None or tag is None:
         await ctx.send('Use /playerStatus \{gameName} \{tag}')
     else:
-        summoner = await summonerRequest(name, tag)
-        await ctx.send(summoner)
+        summoner = await summonerRequest(name, tag) 
         encryptedSummonerId = await encryptedSummonerIdRequest(summoner)
-        await ctx.send(encryptedSummonerId)
         playerSts = await playerStatus(encryptedSummonerId)
-        await ctx.send(playerSts)
-        #await ctx.send('Status de:', name, '\n', 'Rank:', player['rank'], '\n', 'Wins:', player['wins'], '\n', 'Losses:', player['losses'])
+
+        winrate = (playerSts[1] / (playerSts[1] + playerSts[2])) * 100
         
+        embed=discord.Embed(title=name + ' #' + tag.upper() +' status', description='SoloQ status', color=0xFF5733)
+        embed.add_field(name="Elo:", value=playerSts[0], inline=True)
+        embed.add_field(name="Winrate:", value="{:.2f}".format(winrate) + '%', inline=True)
+        await ctx.send(embed=embed)
+
 bot.run(DISCORD_TOKEN)
