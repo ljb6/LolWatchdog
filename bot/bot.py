@@ -16,14 +16,16 @@ async def on_ready():
     print(f'Bot está online como {bot.user.name}')
 
 @bot.command()
-async def playerStatus(ctx, name=None, tag=None):
+async def player(ctx, name=None, tag=None):
     if name is None or tag is None:
         await ctx.send('Use /playerStatus \{gameName} \{tag}')
     else:
         summoner = await summonerRequest(name, tag)
+        await ctx.send(summoner)
         encryptedSummonerId = await encryptedSummonerIdRequest(summoner)
-        player = await playerStatus(encryptedSummonerId)
-        #await ctx.send(player)
-        await ctx.send('Status de:', name, '\n', 'Rank:', player['rank'], '\n', 'Wins:', player['wins'], '\n', 'Losses:', player['losses'])
+        await ctx.send(encryptedSummonerId)
+        playerSts = await playerStatus(encryptedSummonerId)
+        await ctx.send(playerSts)
+        #await ctx.send('Status de:', name, '\n', 'Rank:', player['rank'], '\n', 'Wins:', player['wins'], '\n', 'Losses:', player['losses'])
         
 bot.run(DISCORD_TOKEN)
