@@ -24,12 +24,12 @@ async def playerStatus(encryptedSummonerId):
       break
 
   if soloq_entry != None:
+    rank = soloq_entry['rank']
     tier = soloq_entry['tier']
     wins = int(soloq_entry['wins'])
     losses = int(soloq_entry['losses'])
-    return [tier, wins, losses]
+    return [tier, rank, wins, losses]
   else:
     return ['NO TIER', wins, losses]
-
 
 
