@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
 from classes.Player import Player
+import json
 
-DISCORD_TOKEN = ''
+DISCORD_TOKEN = 'MTE4NzUxNTY5Njg0NzAxNTk2Ng.GagIb0.P3nDNRKBX92EidGB0jVmUp5nC1Ld6Ve_y_XQ-8'
 intents = discord.Intents.all() 
 bot = commands.Bot(command_prefix='/', intents=intents)
 
@@ -10,6 +11,17 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 async def on_ready():
     print(f'Bot está online como {bot.user.name}')
 
+@bot.command()
+async def comandos(ctx):
+    with open('commands/commands.json', 'r') as arquivo_json:
+        dados = json.load(arquivo_json)
+        embed=discord.Embed(title='Comandos', color=0xFF5733)
+        embed.set_footer(text='LolWatchdog - gh: @ljb6', icon_url='https://avatars.githubusercontent.com/u/81322668?s=400&v=4')
+
+        for command in dados['commands']:
+            embed.add_field(name=command['command'], value=command['description'], inline=False)
+        await ctx.send(embed=embed)
+        
 @bot.command()
 async def soloq(ctx, nameAndTag=None):
 

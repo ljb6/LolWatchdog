@@ -9,10 +9,12 @@ class RiotAPI():
   
   def summonerRequest(self, name, tag):
     summonerRequest = f'{self.summonerUrl}{name}/{tag}?api_key={self.apiKey}'
+    print(requests.get(summonerRequest).json())
     return requests.get(summonerRequest).json()['puuid']
 
   def encryptedSummonerIdRequest(self, puuid):
     encryptedSummonerId = f'{self.encryptedSummonerIdUrl}{puuid}?api_key={self.apiKey}'
+    print(requests.get(encryptedSummonerId).json())
     return requests.get(encryptedSummonerId).json()['id']
   
   def playerStatus(self, encryptedSummonerId):

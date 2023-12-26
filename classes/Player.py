@@ -1,6 +1,6 @@
 from .RiotAPI import RiotAPI
 
-riotRequests = RiotAPI('')
+riotRequests = RiotAPI('RGAPI-0cadcd4f-a1c3-4af1-bc93-c9a0fba9aec1')
 
 class Player():
 
@@ -26,6 +26,4 @@ class Player():
     losses = int(self.summoner[0]['losses'])
     return wins / (wins + losses) * 100
 
-lucca = Player('bckrz#pjl')
-lucca.elo()
 

@@ -1,0 +1,9 @@
+{
+  "commands": [
+    {
+      "command": "soloq",
+      "description": "Estatística do jogador (soloQ)",
+      "example": "/soloq bcrkz#br1"
+    }
+  ]
+}
