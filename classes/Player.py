@@ -1,6 +1,6 @@
 from .RiotAPI import RiotAPI
 
-riotRequests = RiotAPI('RGAPI-0cadcd4f-a1c3-4af1-bc93-c9a0fba9aec1')
+riotRequests = RiotAPI('')
 
 class Player():
 
