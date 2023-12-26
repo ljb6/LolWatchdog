@@ -1,10 +1,8 @@
 from .RiotAPI import RiotAPI
 
-riot_requests = RiotAPI('RGAPI-0cadcd4f-a1c3-4af1-bc93-c9a0fba9aec1')
+riot_requests = RiotAPI('')
 
 class Player():
-  
-  riot_requests = RiotAPI('RGAPI-0cadcd4f-a1c3-4af1-bc93-c9a0fba9aec1')
 
   def __init__(self, nameAndTag):
     splited = nameAndTag.split('#')
