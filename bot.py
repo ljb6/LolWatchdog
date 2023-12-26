@@ -3,7 +3,7 @@ from discord.ext import commands
 from classes.Player import Player
 import json
 
-DISCORD_TOKEN = 'MTE4NzUxNTY5Njg0NzAxNTk2Ng.GagIb0.P3nDNRKBX92EidGB0jVmUp5nC1Ld6Ve_y_XQ-8'
+DISCORD_TOKEN = ''
 intents = discord.Intents.all() 
 bot = commands.Bot(command_prefix='/', intents=intents)
 
