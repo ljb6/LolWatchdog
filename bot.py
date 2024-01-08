@@ -21,7 +21,15 @@ async def comandos(ctx):
         for command in dados['commands']:
             embed.add_field(name=command['command'], value=command['description'], inline=False)
         await ctx.send(embed=embed)
-        
+
+@bot.command()
+async def temporada(ctx):
+    counter = datetime(2024, 1, 10, 12) - datetime.now()
+    hours, seconds = divmod(counter.seconds, 3600)
+    minutes, seconds = divmod(seconds, 60)
+    embed=discord.Embed(title='Temporada 2023', description=f'Faltam {counter.days} dias, {hours} horas e {minutes} minutos para acabar a temporada!', color=0xFF5733)
+    await ctx.send(embed=embed)
+    
 @bot.command()
 async def soloq(ctx, nameAndTag=None):
 
