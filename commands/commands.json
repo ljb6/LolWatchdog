@@ -4,6 +4,11 @@
       "command": "soloq",
       "description": "Estatística do jogador (soloQ)",
       "example": "/soloq bcrkz#br1"
+    },
+    {
+      "command": "temporada",
+      "description": "Tempo restante para o fim da temporada",
+      "example": "/temporada"
     }
   ]
 }
